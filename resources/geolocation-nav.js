@@ -506,11 +506,43 @@
         }
     });
 
+    // Zoom-to-group controls: jump between the Cascade Springs trail sensors
+    // and the far-away regulatory/calibration sensors with one click.
+    function makeControlButton(iconClass, title, onClick) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'ol-control locate-control';
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.title = title;
+        button.innerHTML = '<i class="fas ' + iconClass + '" aria-hidden="true"></i>';
+        button.addEventListener('click', onClick);
+        wrapper.appendChild(button);
+        return wrapper;
+    }
+
+    var cascadeZoomWrapper = makeControlButton('fa-tree', 'Zoom to Cascade Springs sensors', function () {
+        map.getView().fit(lyr_sensor_locations_1.getSource().getExtent(), {
+            padding: [60, 60, 60, 60],
+            maxZoom: 18,
+            duration: 500
+        });
+    });
+
+    var regulatoryZoomWrapper = makeControlButton('fa-industry', 'Zoom to regulatory sensors', function () {
+        map.getView().fit(lyr_regulatory_sensors_1.getSource().getExtent(), {
+            padding: [60, 60, 60, 60],
+            maxZoom: 16,
+            duration: 500
+        });
+    });
+
     var topRightContainerDiv = document.getElementById('top-right-container');
     if (topRightContainerDiv) {
         topRightContainerDiv.appendChild(locateWrapper);
         topRightContainerDiv.appendChild(modeWrapper);
         topRightContainerDiv.appendChild(satelliteWrapper);
+        topRightContainerDiv.appendChild(cascadeZoomWrapper);
+        topRightContainerDiv.appendChild(regulatoryZoomWrapper);
     }
 
     // Popups anchor above the clicked point (with the CSS triangle pointing
