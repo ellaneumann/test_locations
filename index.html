@@ -32,7 +32,92 @@
         .ol-control {
             background-color: rgba(255,255,255,.4) !important;
             padding: 2px !important;
-        } 
+        }
+        #top-right-container .locate-control {
+            position: absolute;
+            right: 0.5em;
+        }
+        #top-right-container .locate-control:nth-of-type(1) { top: 0.5em; }
+        #top-right-container .locate-control:nth-of-type(2) { top: 3.4em; }
+        #top-right-container .locate-control:nth-of-type(3) { top: 6.3em; }
+        #top-right-container .locate-control button {
+            background-color: #1a73e8 !important;
+            color: #ffffff !important;
+            width: 2.4em !important;
+            height: 2.4em !important;
+            line-height: 2.4em !important;
+            font-size: 1.5em !important;
+            border-radius: 6px !important;
+        }
+        #top-right-container .locate-control button:hover,
+        #top-right-container .locate-control button:focus {
+            background-color: #1558b0 !important;
+        }
+        #top-right-container .locate-control button.mode-active {
+            background-color: #1b5e20 !important;
+        }
+        #top-right-container .locate-control button.mode-active:hover,
+        #top-right-container .locate-control button.mode-active:focus {
+            background-color: #144317 !important;
+        }
+        .nav-panel {
+            display: none;
+            position: absolute;
+            top: 130px;
+            left: 8px;
+            z-index: 5;
+            width: 240px;
+            max-width: calc(100% - 24px);
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+            font-size: 13px;
+            line-height: 1.4;
+            color: #222;
+        }
+        .nav-panel.visible {
+            display: block;
+        }
+        .nav-panel-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            background-color: #1a73e8;
+            border-radius: 8px 8px 0 0;
+            padding: 8px 12px;
+        }
+        .nav-panel-body {
+            padding: 10px 12px;
+        }
+        .navigate-distance {
+            display: block;
+            font-size: 1em;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 6px;
+        }
+        .navigate-note {
+            display: block;
+            font-size: 0.9em;
+            color: #555;
+        }
+        .navigate-link {
+            display: inline-block;
+            margin: 4px 0;
+            padding: 6px 12px;
+            background-color: #1a73e8;
+            color: #ffffff !important;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+        .navigate-link:hover {
+            background-color: #1558b0;
+        }
         </style>
 
         <style>
@@ -51,6 +136,10 @@
                 <a href="#" id="popup-closer" class="ol-popup-closer"></a>
                 <div id="popup-content"></div>
             </div>
+            <div id="nav-panel" class="nav-panel">
+                <div class="nav-panel-header"><i class="fas fa-route" aria-hidden="true"></i> <span id="nav-panel-title">Navigation</span></div>
+                <div id="nav-panel-body" class="nav-panel-body"></div>
+            </div>
         </div>
         <script src="resources/qgis2web_expressions.js"></script>
         <script src="./resources/functions.js"></script>
@@ -60,8 +149,10 @@
         <script src="resources/olms.js"></script>
         <script src="layers/sensor_locations_1.js"></script>
         <script src="styles/sensor_locations_1_style.js"></script>
-        <script src="./layers/layers.js" type="text/javascript"></script> 
+        <script src="./layers/layers.js" type="text/javascript"></script>
         <script src="./resources/Autolinker.min.js"></script>
-        <script src="./resources/qgis2web.js"></script>        
+        <script src="./resources/qgis2web.js"></script>
+        <script src="./layers/trail_network.js"></script>
+        <script src="./resources/geolocation-nav.js"></script>
     </body>
 </html>
