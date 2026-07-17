@@ -49,11 +49,11 @@
     }
     var trailheadFeature = findTrailheadFeature();
 
-    // David Loyd Davis's backyard sits off in the neighboring road, not on
-    // the preserve's trail network, so it's excluded from navigation.
+    // Sensors sitting off the preserve's trail network (e.g. on neighboring
+    // private property) are excluded from in-app navigation.
     function isExcludedFromNavigation(feature) {
         var description = feature.get('Description') || '';
-        return /david.*backyard/i.test(description) || feature.get('friendly_name') === 'sensor_3212';
+        return /backyard/i.test(description);
     }
 
     // ---------------------------------------------------------------
